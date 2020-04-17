@@ -18,6 +18,8 @@ public class Main3Activity extends AppCompatActivity {
 
     Handler handler = new Handler();
 
+    boolean isTracking = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +43,7 @@ public class Main3Activity extends AppCompatActivity {
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
                 Toast.makeText(getApplicationContext(),"트래킹시작",Toast.LENGTH_SHORT).show();
+                isTracking = true;
 
             }
 
@@ -48,6 +51,7 @@ public class Main3Activity extends AppCompatActivity {
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
                 Toast.makeText(getApplicationContext(),"트래킹종료",Toast.LENGTH_SHORT).show();
+                isTracking = true;
             }
         });
 
@@ -58,23 +62,25 @@ public class Main3Activity extends AppCompatActivity {
             public void run() {
                 int max = seekBar.getMax();
 
-                while(true){
-                    value = seekBar.getProgress() + add;
-                    if(value > max || value < 0){
-                        add = -add;
-                    }
-
-                    handler.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            seekBar.setProgress(value);
+                while (true) {
+                    if (!isTracking) { // 트래킹 중이 아닐때만 SeekBar 이동
+                        value = seekBar.getProgress() + add;
+                        if (value > max || value < 0) {
+                            add = -add;
                         }
-                    });
 
-                    try {
-                        Thread.sleep(100);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
+                        handler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                seekBar.setProgress(value);
+                            }
+                        });
+
+                        try {
+                            Thread.sleep(100);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }
             }
