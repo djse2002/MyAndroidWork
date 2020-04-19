@@ -4,50 +4,45 @@ import java.io.Serializable;
 
 public class User implements Serializable {
 
-    int    photo;   // 사진
-    String name;    // 이름
-    int age;     // 나이
-    String adress;  // 주소
+    String name;
+    String age;
+    String address;
 
     public User() {
     }
 
-    public User(int photo, String name, int age, String adress) {
-        this.photo = photo;
+
+    public User(String name, String age, String address) {
+
         this.name = name;
         this.age = age;
-        this.adress = adress;
+        this.address = address;
     }
 
-    public int getPhoto() {
-        return photo;
-    }
 
     public String getName() {
         return name;
     }
 
-    public int getAge() {
+    public String getAge() {
         return age;
     }
 
-    public String getAdress() {
-        return adress;
+    public String getAddress() {
+        return address;
     }
 
-    public void setPhoto(int photo) {
-        this.photo = photo;
-    }
+
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public void setAge(int age) {
+    public void setAge(String age) {
         this.age = age;
     }
 
-    public void setAdress(String adress) {
-        this.adress = adress;
+    public void setAddress(String address) {
+        this.address = address;
     }
 }
