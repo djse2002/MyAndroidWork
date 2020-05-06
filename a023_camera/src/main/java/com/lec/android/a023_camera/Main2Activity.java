@@ -56,7 +56,7 @@ public class Main2Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
-        // 권한 획득 하기
+        // 권한 획득 하기   
         if(Build.VERSION.SDK_INT >= 23 ){
             if(checkSelfPermission(String.valueOf(permissions)) == PackageManager.PERMISSION_DENIED){
                 requestPermissions(permissions, REQUEST_CODE);  // 권한 요청하기
